@@ -1,3 +1,7 @@
+//This file is used for import or export dummy product's and user's data into database
+//to run importData: npm run data:import
+//to run destroyData: npm run data:destroy
+
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import users from './data/users.js';

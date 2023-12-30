@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
+    //For which use create the review on product
     user:{
         type: mongoose.Schema.Types.ObjectId,
         required:true,
@@ -23,6 +24,7 @@ const reviewSchema = new mongoose.Schema({
 });
 
 const produtSchema = new mongoose.Schema({
+    //For which user create the product
     user:{
         type: mongoose.Schema.Types.ObjectId,
         required:true,
