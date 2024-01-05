@@ -42,7 +42,7 @@ const LoginScreen = () => {
         }catch(error){
             toast.error(error?.data?.message || error.error, {
                 position: toast.POSITION.TOP_CENTER,
-              })
+              });
         }
     }
 
