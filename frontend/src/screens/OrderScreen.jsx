@@ -54,11 +54,12 @@ const OrderScreen = () => {
     });
   }
 
-  async function onApproveTest() {
-    await payOrder({orderId, details: { payer:{} }});
-    refetch();
-    toast.success('Order is paid.');
-  }
+  // just for testing purpose
+  // async function onApproveTest() {
+  //   await payOrder({orderId, details: { payer:{} }});
+  //   refetch();
+  //   toast.success('Order is paid.');
+  // }
 
   function onError(err){
     toast.error(err.message);
@@ -202,12 +203,12 @@ const OrderScreen = () => {
                   ) : (
                     <div>
                       {/* This button is just for testing */}
-                      <Button
+                      {/* <Button
                         style={{ marginBottom: '10px'}}
                         onClick={onApproveTest}
                       >
                         Test Pay Order
-                      </Button>
+                      </Button> */}
 
                       <div>
                         <PayPalButtons
