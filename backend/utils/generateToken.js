@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const generateToken = (user,res) => {
-  //Create jwt token(jwt===header+payload+signature)
+  //Create jwt token(jwt===payload+signature+header)
     //signature===header+payload+secret-key
     const payload = {
         userId: user._id,
