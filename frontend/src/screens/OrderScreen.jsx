@@ -15,6 +15,7 @@ const OrderScreen = () => {
   
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
 
+
   const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
@@ -80,6 +81,15 @@ const OrderScreen = () => {
     });
   }
   
+  const deliverHandler = async() =>{
+    try{
+      await deliverOrder(orderId);
+      refetch();
+      toast.success('Order delivered!');
+    }catch(error){
+      toast.error(error?.data?.message || error.message);
+    }
+  };
 
   return isLoading ? (
     <Loader />
@@ -106,7 +116,7 @@ const OrderScreen = () => {
                 {order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.postalCode}, {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (
-                <Message variant='succes'>
+                <Message variant='success'>
                   Delivered on {order.deliveredAt}
                 </Message>
               ):(
@@ -223,6 +233,24 @@ const OrderScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
+
+              {loadingDeliver && <Loader />}
+
+              {userInfo &&
+               userInfo.isAdmin &&
+               order.isPaid &&
+               !order.isDelivered && (
+                <ListGroup.Item>
+                  <Button
+                    type='button'
+                    className='btn btn-block'
+                    onClick={deliverHandler}
+                  >
+                    Mark as Delivered
+                  </Button>
+                </ListGroup.Item>
+               )
+              }
 
             </ListGroup>
           </Card>
