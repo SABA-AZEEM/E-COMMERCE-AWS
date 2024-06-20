@@ -28,14 +28,19 @@ import AdminRoute from './components/AdminRoute.jsx';
 import ProductListScreen from './screens/admin/ProductListScreen.jsx';
 import ProductEditScreen from './screens/admin/ProductEditScreen.jsx';
 import UserListScreen from './screens/admin/UserListScreen.jsx';
+import LoginPage from './screens/LoginPage.jsx';
+import ConfirmUserPage from './screens/ConfirmUserPage.jsx';
 
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index={true} path='/' element={<HomeScreen />} />
+      <Route index={true} path='/home' element={<HomeScreen />} />
+      <Route index={true} path='/confirm' element={<ConfirmUserPage />} />
       <Route path='/product/:id' element={<ProductScreen />} />
       <Route path='/cart' element={<CartScreen />} />
-      <Route path='/login' element={<LoginScreen />} />
+      {/* <Route path='/login' element={<LoginScreen />} /> */}
+      <Route path='/login' element={<LoginPage />} />
       <Route path='/register' element={<RegisterScreen />} />
 
       // Register User 

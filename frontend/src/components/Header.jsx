@@ -8,6 +8,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { globalLogout } from '../auth/authService';
 
 const Header = () => {
 
@@ -21,12 +22,14 @@ const Header = () => {
 
     const logoutHandler = async () => {
         try{
-            await logoutApiCall();
-            dispatch(logout());
+            // await logoutApiCall();
+            // dispatch(logout());
+            await globalLogout(sessionStorage.accessToken)
             navigate('/login')
         }catch(error){
             console.log(error);
         }
+        
     }
     
   return (
@@ -55,8 +58,8 @@ const Header = () => {
                                 }
                             </Nav.Link>
                         </LinkContainer>
-                        {userInfo ? 
-                            (<NavDropdown title={userInfo.name} id='username'>
+                        {(sessionStorage.idToken && sessionStorage.accessToken && sessionStorage.refreshToken) ? 
+                            (<NavDropdown title="User" id='username'>
                                 <LinkContainer to='/profile'>
                                     <NavDropdown.Item>
                                         Profile
